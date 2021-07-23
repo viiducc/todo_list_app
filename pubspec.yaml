@@ -26,7 +26,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/
+    - assets/images/walkthrough1/
 
   fonts:
     - family: AvenirNextRoundedPro
