@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WalkThrough1 extends StatelessWidget {
-  const WalkThrough1();
+class WalkThrough2 extends StatelessWidget {
+  const WalkThrough2();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -14,7 +14,7 @@ class WalkThrough1 extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.fromLTRB(35, 90, 35, 30),
-                child: Image.asset('assets/images/walkthrough1/Human.png'),
+                child: Image.asset('assets/images/walkthrough2/Human.png'),
               ),
               Container(
                 child: Column(
@@ -43,13 +43,13 @@ class WalkThrough1 extends StatelessWidget {
                   ],
                 ),
               ),
-              Image.asset('assets/images/walkthrough1/Pagination.png'),
+              Image.asset('assets/images/walkthrough2/Pagination.png'),
               Stack(
                 children: [
                   Container(
                     width: size.width,
                     child: Image.asset(
-                      'assets/images/walkthrough1/Footer.png',
+                      'assets/images/walkthrough2/Footer.png',
                       fit: BoxFit.cover,
                     ),
                   ),
