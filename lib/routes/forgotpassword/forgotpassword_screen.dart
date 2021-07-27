@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn();
+class ForgotPassword extends StatelessWidget {
+  const ForgotPassword();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,7 +21,7 @@ class SignIn extends StatelessWidget {
                 ),
                 const SizedBox(height: 62),
                 const Text(
-                  'Welcome back',
+                  'Forgot Password',
                   style: TextStyle(
                     color: Color(0xFF313131),
                     fontFamily: 'AvenirNextRoundedPro',
@@ -31,7 +31,7 @@ class SignIn extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'Sign in to continue',
+                  'Please enter your email below to receive \nyour password reset instructions',
                   style: TextStyle(
                     color: Color(0xFF9B9B9B),
                     fontFamily: 'AvenirNextRoundedPro',
@@ -68,44 +68,8 @@ class SignIn extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 32),
-                const Text(
-                  'Password',
-                  style: TextStyle(
-                    color: Color(0xFF313131),
-                    fontFamily: 'AvenirNextRoundedPro',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your password',
-                    hintStyle: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFFC6C6C6),
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
                 Container(
-                  margin: const EdgeInsets.only(left: 220),
-                  child: const Text(
-                    'Forgot password',
-                    style: TextStyle(
-                      color: Color(0xFF313131),
-                      fontFamily: 'AvenirNextRoundedPro',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(24, 80, 24, 180),
+                  margin: const EdgeInsets.fromLTRB(24, 32, 24, 0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(327, 48),
@@ -116,7 +80,7 @@ class SignIn extends StatelessWidget {
                     ),
                     onPressed: () {},
                     child: const Text(
-                      'Log In',
+                      'Send Request',
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontFamily: 'AvenirNextRoundedPro',

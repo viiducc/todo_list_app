@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WalkThrough1 extends StatelessWidget {
+class WalkThrough3 extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
-  const WalkThrough1();
+  const WalkThrough3();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -14,12 +14,12 @@ class WalkThrough1 extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.fromLTRB(35, 90, 35, 30),
-              child: Image.asset('assets/images/walkthrough1/Human.png'),
+              child: Image.asset('assets/images/walkthrough3/Human.png'),
             ),
             Column(
               children: const [
                 Text(
-                  'Wellcome to aking',
+                  'Tasks and assign',
                   style: TextStyle(
                     color: Color(0xFF313131),
                     fontFamily: 'AvenirNextRoundedPro',
@@ -31,7 +31,7 @@ class WalkThrough1 extends StatelessWidget {
                   height: 9,
                 ),
                 Text(
-                  'Whats going to happen tomorrow?',
+                  'Task and assign them to colleagues.',
                   style: TextStyle(
                     color: Color(0xFF313131),
                     fontFamily: 'AvenirNextRoundedPro',
@@ -41,13 +41,13 @@ class WalkThrough1 extends StatelessWidget {
                 ),
               ],
             ),
-            Image.asset('assets/images/walkthrough1/Pagination.png'),
+            Image.asset('assets/images/walkthrough3/Pagination.png'),
             Stack(
               children: [
                 SizedBox(
                   width: size.width,
                   child: Image.asset(
-                    'assets/images/walkthrough1/Footer.png',
+                    'assets/images/walkthrough3/Footer.png',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -80,7 +80,7 @@ class WalkThrough1 extends StatelessWidget {
                   child: TextButton(
                     style: TextButton.styleFrom(
                       minimumSize: const Size(52, 22),
-                      backgroundColor: Colors.transparent,
+                      //primary: Colors.white,
                     ),
                     onPressed: () {},
                     child: const Text(

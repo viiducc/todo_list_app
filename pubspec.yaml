@@ -17,16 +17,22 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-  flutter_native_splash: ^1.2.0
   
-flutter_native_splash:
-  color: "#FFFFFF"
 
 flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/walkthrough/
     - assets/images/walkthrough1/
+    - assets/images/walkthrough2/
+    - assets/images/walkthrough3/
+    - assets/images/successful/
+
+  
+  
+
+    
 
   fonts:
     - family: AvenirNextRoundedPro
