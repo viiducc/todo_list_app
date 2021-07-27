@@ -1,19 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn();
+class SignIn extends StatefulWidget {
+  String user = '';
+  String password = '';
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           margin: const EdgeInsets.fromLTRB(24, 26, 24, 0),
           child: SingleChildScrollView(
             child: Column(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
@@ -51,6 +56,8 @@ class SignIn extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
+
+                //Username Input
                 TextFormField(
                   style: const TextStyle(
                     fontStyle: FontStyle.normal,
@@ -79,6 +86,8 @@ class SignIn extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
+
+                //PasswordInput
                 TextFormField(
                   decoration: const InputDecoration(
                     hintText: 'Enter your password',
