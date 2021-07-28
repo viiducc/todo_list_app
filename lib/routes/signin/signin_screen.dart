@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
-  String user = '';
-  String password = '';
-
+  const SignIn();
   @override
   State<SignIn> createState() => _SignInState();
 }

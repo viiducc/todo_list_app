@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  flutter_slidable: ^0.6.0
 
 dev_dependencies:
   flutter_test:
@@ -23,10 +24,8 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/splash/
     - assets/images/walkthrough/
-    - assets/images/walkthrough1/
-    - assets/images/walkthrough2/
-    - assets/images/walkthrough3/
     - assets/images/successful/
 
   
