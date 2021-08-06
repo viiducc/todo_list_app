@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/routes/worklist_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn();
@@ -99,7 +100,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 const SizedBox(height: 12),
                 Container(
-                  margin: const EdgeInsets.only(left: 220),
+                  margin: const EdgeInsets.only(left: 200),
                   child: const Text(
                     'Forgot password',
                     style: TextStyle(
@@ -121,7 +122,10 @@ class _SignInState extends State<SignIn> {
                       ),
                       primary: const Color(0xFFF96060), // background
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => WorkList()));
+                    },
                     child: const Text(
                       'Log In',
                       style: TextStyle(

@@ -13,7 +13,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    Timer(Duration(seconds: 1), onFinish);
+    Timer(Duration(seconds: 3), onFinish);
     super.initState();
   }
 

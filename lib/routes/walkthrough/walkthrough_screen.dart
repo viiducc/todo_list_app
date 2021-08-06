@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/routes/signin/signin_screen.dart';
 import 'package:todo_list_app/routes/walkthrough/widget/walkthrough_widget.dart';
 
 class WalkThrough extends StatefulWidget {
@@ -11,6 +12,9 @@ class WalkThrough extends StatefulWidget {
 }
 
 class _WalkThroughState extends State<WalkThrough> {
+  int currentPage = 0;
+  PageController _pageController =
+      new PageController(initialPage: 0, keepPage: true);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,8 +23,21 @@ class _WalkThroughState extends State<WalkThrough> {
         children: <Widget>[
           Column(
             children: [
-              WalkthroughWidget('Human1', 'Footer1', 'Pagination1',
-                  'Welcome to aking', 'Whats going to happen tomorrow?'),
+              Container(
+                height: size.height,
+                child: PageView(
+                  controller: _pageController,
+                  children: [
+                    WalkthroughWidget('Human1', 'Footer1', 'Pagination1',
+                        'Welcome to aking', 'Whats going to happen tomorrow?'),
+                    WalkthroughWidget('Human2', 'Footer2', 'Pagination2',
+                        'Welcome to aking', 'Whats going to happen tomorrow?'),
+                    WalkthroughWidget('Human3', 'Footer3', 'Pagination3',
+                        'Welcome to aking', 'Whats going to happen tomorrow?'),
+                  ],
+                  onPageChanged: (value) => {setCurrentPage(value)},
+                ),
+              )
             ],
           ),
           Positioned(
@@ -54,7 +71,9 @@ class _WalkThroughState extends State<WalkThrough> {
                 minimumSize: const Size(52, 22),
                 backgroundColor: Colors.transparent,
               ),
-              onPressed: () {},
+              onPressed: () {
+                openSignInScreen();
+              },
               child: const Text(
                 'Log In',
                 style: TextStyle(
@@ -69,5 +88,14 @@ class _WalkThroughState extends State<WalkThrough> {
         ],
       ),
     );
+  }
+
+  setCurrentPage(int value) {
+    currentPage = value;
+    setState(() {});
+  }
+
+  openSignInScreen() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
   }
 }

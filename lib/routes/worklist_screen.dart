@@ -20,7 +20,7 @@ class _WorkListState extends State<WorkList> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const <Widget>[
           NavigationHeader(),
-          Today(),
+          //Today(),
           Tabs(),
         ],
       ),
