@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/routes/successful/successfull_screen.dart';
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword();
+  ResetPassword({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -16,9 +16,12 @@ class ResetPassword extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: const Icon(Icons.west, size: 24),
-                ),
+                IconButton(
+                    icon: const Icon(Icons.west),
+                    iconSize: 24,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
                 const SizedBox(height: 62),
                 const Text(
                   'Reset Password',
@@ -123,7 +126,12 @@ class ResetPassword extends StatelessWidget {
                       ),
                       primary: const Color(0xFFF96060), // background
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Successful()));
+                    },
                     child: const Text(
                       'Change password',
                       style: TextStyle(

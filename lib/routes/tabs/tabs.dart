@@ -27,7 +27,7 @@ class _TabsState extends State<Tabs> {
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color(0xFFF96060),
+          backgroundColor: const Color(0xFFF96060),
           onPressed: () {},
           child: const Icon(
             Icons.add,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/routes/resetpassword/resetpassword_screen.dart';
 import 'package:todo_list_app/routes/worklist_screen.dart';
 
 class SignIn extends StatefulWidget {
@@ -20,9 +21,12 @@ class _SignInState extends State<SignIn> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: const Icon(Icons.west, size: 24),
-                ),
+                IconButton(
+                    icon: const Icon(Icons.west),
+                    iconSize: 24,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
                 const SizedBox(height: 62),
                 const Text(
                   'Welcome back',
@@ -99,18 +103,28 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  margin: const EdgeInsets.only(left: 200),
-                  child: const Text(
-                    'Forgot password',
-                    style: TextStyle(
-                      color: Color(0xFF313131),
-                      fontFamily: 'AvenirNextRoundedPro',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ResetPassword()));
+                      },
+                      child: const Text(
+                        'Forgot password',
+                        style: TextStyle(
+                          color: Color(0xFF313131),
+                          fontFamily: 'AvenirNextRoundedPro',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(24, 80, 24, 180),

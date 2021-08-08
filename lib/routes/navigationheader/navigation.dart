@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/routes/worklist/month_screen.dart';
 
 class NavigationHeader extends StatelessWidget {
   const NavigationHeader({
@@ -8,24 +9,28 @@ class NavigationHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      child: DefaultTabController(
-        length: 2,
-        child: AppBar(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.west),
+            onPressed: () {},
+          ),
           title: const Text(
             'Work List',
           ),
           centerTitle: true,
-          actions: [
+          actions: const [
             MyPopupMenu(),
           ],
-          backgroundColor: Color(0xFFF96060),
+          backgroundColor: const Color(0xFFF96060),
           bottom: const TabBar(
               indicatorColor: Colors.white,
               indicatorWeight: 3,
               indicator: UnderlineTabIndicator(
-                  insets: EdgeInsets.symmetric(horizontal: 46)),
+                insets: EdgeInsets.symmetric(horizontal: 46),
+              ),
               tabs: [
                 Tab(
                   text: 'Today',
@@ -35,12 +40,22 @@ class NavigationHeader extends StatelessWidget {
                 )
               ]),
         ),
+        body: const TabBarView(
+          children: [
+            Center(
+              child: Text("This is Today"),
+            ),
+            Month()
+          ],
+        ),
       ),
     );
   }
 }
 
 class MyPopupMenu extends StatelessWidget {
+  const MyPopupMenu({Key? key}) : super(key: key);
+
   // const MyPopupMenu({
   //   Key? key,
   // }) : super(key: key);

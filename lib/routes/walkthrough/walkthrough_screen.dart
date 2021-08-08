@@ -28,17 +28,25 @@ class _WalkThroughState extends State<WalkThrough> {
                 child: PageView(
                   controller: _pageController,
                   children: [
-                    WalkthroughWidget('Human1', 'Footer1', 'Pagination1',
-                        'Welcome to aking', 'Whats going to happen tomorrow?'),
-                    WalkthroughWidget('Human2', 'Footer2', 'Pagination2',
-                        'Welcome to aking', 'Whats going to happen tomorrow?'),
-                    WalkthroughWidget('Human3', 'Footer3', 'Pagination3',
-                        'Welcome to aking', 'Whats going to happen tomorrow?'),
+                    WalkthroughWidget('Human1', 'Footer1', 'Welcome to aking',
+                        'Whats going to happen tomorrow?'),
+                    WalkthroughWidget('Human2', 'Footer2', 'Work happens',
+                        'Get notified when work happens.'),
+                    WalkthroughWidget('Human3', 'Footer3', 'Tasks and assign',
+                        'Task and assign them to colleagues.'),
                   ],
                   onPageChanged: (value) => {setCurrentPage(value)},
                 ),
-              )
+              ),
             ],
+          ),
+          Positioned(
+            left: 168,
+            top: 501,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(3, (index) => getIndicator(index)),
+            ),
           ),
           Positioned(
             left: (size.width - 293) / 2,
@@ -87,6 +95,18 @@ class _WalkThroughState extends State<WalkThrough> {
           ),
         ],
       ),
+    );
+  }
+
+  AnimatedContainer getIndicator(int pageNo) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 100),
+      height: 10,
+      width: (currentPage == pageNo) ? 20 : 10,
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          color: (currentPage == pageNo) ? Colors.black : Colors.grey),
     );
   }
 

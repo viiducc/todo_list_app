@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/routes/worklist_screen.dart';
 
 class Successful extends StatelessWidget {
   const Successful();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => WorkList()));
+        },
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

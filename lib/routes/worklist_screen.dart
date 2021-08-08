@@ -15,15 +15,18 @@ class WorkList extends StatefulWidget {
 class _WorkListState extends State<WorkList> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const <Widget>[
-          NavigationHeader(),
-          //Today(),
-          Tabs(),
-        ],
-      ),
+    return Stack(
+      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: const <Widget>[
+        NavigationHeader(),
+        //Today(),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: Tabs(),
+        ),
+      ],
     );
   }
 }
