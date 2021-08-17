@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_app/routes/successful/successfull_screen.dart';
 
 class ResetPassword extends StatelessWidget {
-  ResetPassword({Key? key}) : super(key: key);
+  const ResetPassword({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +130,7 @@ class ResetPassword extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Successful()));
+                              builder: (context) => const Successful()));
                     },
                     child: const Text(
                       'Change password',

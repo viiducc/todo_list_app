@@ -13,7 +13,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), onFinish);
+    Timer(const Duration(seconds: 3), onFinish);
     super.initState();
   }
 
@@ -45,6 +45,6 @@ class _SplashState extends State<Splash> {
 
   void onFinish() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => WalkThrough()));
+        context, MaterialPageRoute(builder: (context) => const WalkThrough()));
   }
 }

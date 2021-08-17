@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_app/routes/worklist_screen.dart';
 
 class Successful extends StatelessWidget {
-  const Successful();
+  const Successful({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: InkWell(
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => WorkList()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const WorkList()));
         },
         child: Center(
           child: Column(

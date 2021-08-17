@@ -4,7 +4,8 @@ import 'package:todo_list_app/routes/resetpassword/resetpassword_screen.dart';
 import 'package:todo_list_app/routes/worklist_screen.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn();
+  const SignIn({Key? key}) : super(key: key);
+
   @override
   State<SignIn> createState() => _SignInState();
 }
@@ -12,7 +13,6 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -111,7 +111,7 @@ class _SignInState extends State<SignIn> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ResetPassword()));
+                                builder: (context) => const ResetPassword()));
                       },
                       child: const Text(
                         'Forgot password',
@@ -137,8 +137,10 @@ class _SignInState extends State<SignIn> {
                       primary: const Color(0xFFF96060), // background
                     ),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => WorkList()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WorkList()));
                     },
                     child: const Text(
                       'Log In',

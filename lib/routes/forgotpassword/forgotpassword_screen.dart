@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword();
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({Key? key}) : super(key: key);
+
+  @override
+  State<ForgotPassword> createState() => _ForgotPasswordState();
+}
+
+class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -16,9 +21,7 @@ class ForgotPassword extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: const Icon(Icons.west, size: 24),
-                ),
+                const Icon(Icons.west, size: 24),
                 const SizedBox(height: 62),
                 const Text(
                   'Forgot Password',

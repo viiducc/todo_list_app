@@ -13,8 +13,8 @@ class WalkThrough extends StatefulWidget {
 
 class _WalkThroughState extends State<WalkThrough> {
   int currentPage = 0;
-  PageController _pageController =
-      new PageController(initialPage: 0, keepPage: true);
+  final PageController _pageController =
+      PageController(initialPage: 0, keepPage: true);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,7 +23,7 @@ class _WalkThroughState extends State<WalkThrough> {
         children: <Widget>[
           Column(
             children: [
-              Container(
+              SizedBox(
                 height: size.height,
                 child: PageView(
                   controller: _pageController,
@@ -42,7 +42,7 @@ class _WalkThroughState extends State<WalkThrough> {
           ),
           Positioned(
             left: 168,
-            top: 501,
+            bottom: 350,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(3, (index) => getIndicator(index)),
@@ -116,6 +116,7 @@ class _WalkThroughState extends State<WalkThrough> {
   }
 
   openSignInScreen() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const SignIn()));
   }
 }

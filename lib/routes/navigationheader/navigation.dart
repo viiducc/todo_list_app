@@ -14,7 +14,7 @@ class NavigationHeader extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.west),
+            icon: const Icon(Icons.west),
             onPressed: () {},
           ),
           title: const Text(

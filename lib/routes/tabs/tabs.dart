@@ -23,7 +23,7 @@ class _TabsState extends State<Tabs> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 71,
+      height: 60,
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
