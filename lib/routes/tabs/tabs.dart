@@ -28,7 +28,75 @@ class _TabsState extends State<Tabs> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color(0xFFF96060),
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(20.0)), //this right here
+                    child: SizedBox(
+                      height: 214,
+                      width: 268,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const SizedBox(
+                            height: 1,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Text(
+                              "Add Task",
+                              style: TextStyle(
+                                fontFamily: 'AvenirNextRoundedPro',
+                                fontSize: 18,
+                                color: Color(0xFF313131),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 1,
+                            margin: const EdgeInsets.symmetric(horizontal: 30),
+                            color: Colors.black.withOpacity(0.2),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Text(
+                              "Add Quick Note",
+                              style: TextStyle(
+                                fontFamily: 'AvenirNextRoundedPro',
+                                fontSize: 18,
+                                color: Color(0xFF313131),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 1,
+                            margin: const EdgeInsets.symmetric(horizontal: 30),
+                            color: Colors.black.withOpacity(0.2),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Text(
+                              "Add Checklist",
+                              style: TextStyle(
+                                fontFamily: 'AvenirNextRoundedPro',
+                                fontSize: 18,
+                                color: Color(0xFF313131),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 1,
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                });
+          },
           child: const Icon(
             Icons.add,
             color: Color(0xFFFFFFFF),

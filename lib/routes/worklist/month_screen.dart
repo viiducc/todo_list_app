@@ -95,7 +95,7 @@ class _MonthState extends State<Month> {
                       final item = items[index];
                       return Slidable(
                         child: buildListTile(item),
-                        actionPane: SlidableDrawerActionPane(),
+                        actionPane: const SlidableDrawerActionPane(),
                         actionExtentRatio: 0.2,
                         secondaryActions: [
                           IconSlideAction(
@@ -175,7 +175,9 @@ class _MonthState extends State<Month> {
         trailing: Container(
           height: 21,
           width: 4,
-          color: item.isDone == true ? Color(0xFFF96060) : Color(0xFF6074F9),
+          color: item.isDone == true
+              ? const Color(0xFFF96060)
+              : const Color(0xFF6074F9),
         ),
         onTap: () {},
       );

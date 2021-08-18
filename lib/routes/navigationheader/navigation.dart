@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/routes/worklist/month_screen.dart';
@@ -21,7 +23,7 @@ class NavigationHeader extends StatelessWidget {
             'Work List',
           ),
           centerTitle: true,
-          actions: const [
+          actions: [
             MyPopupMenu(),
           ],
           backgroundColor: const Color(0xFFF96060),
@@ -56,16 +58,15 @@ class NavigationHeader extends StatelessWidget {
 class MyPopupMenu extends StatelessWidget {
   const MyPopupMenu({Key? key}) : super(key: key);
 
-  // const MyPopupMenu({
-  //   Key? key,
-  // }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
       icon: const Icon(Icons.tune),
       itemBuilder: (context) => [
         PopupMenuItem(
+          // onTap: () {
+          //   selectPopop;
+          // },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const <Widget>[

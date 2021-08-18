@@ -42,7 +42,7 @@ class _WalkThroughState extends State<WalkThrough> {
           ),
           Positioned(
             left: 168,
-            bottom: 350,
+            bottom: 300,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(3, (index) => getIndicator(index)),
