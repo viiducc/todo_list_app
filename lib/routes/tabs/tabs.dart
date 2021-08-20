@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:todo_list_app/routes/newtask/newtask_screen.dart';
 
 class Tabs extends StatefulWidget {
   const Tabs({Key? key}) : super(key: key);
@@ -46,10 +48,16 @@ class _TabsState extends State<Tabs> {
                             height: 1,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NewTask()));
+                            },
                             child: const Text(
                               "Add Task",
                               style: TextStyle(
+                                fontWeight: FontWeight.bold,
                                 fontFamily: 'AvenirNextRoundedPro',
                                 fontSize: 18,
                                 color: Color(0xFF313131),
@@ -66,6 +74,7 @@ class _TabsState extends State<Tabs> {
                             child: const Text(
                               "Add Quick Note",
                               style: TextStyle(
+                                fontWeight: FontWeight.bold,
                                 fontFamily: 'AvenirNextRoundedPro',
                                 fontSize: 18,
                                 color: Color(0xFF313131),
@@ -82,6 +91,7 @@ class _TabsState extends State<Tabs> {
                             child: const Text(
                               "Add Checklist",
                               style: TextStyle(
+                                fontWeight: FontWeight.bold,
                                 fontFamily: 'AvenirNextRoundedPro',
                                 fontSize: 18,
                                 color: Color(0xFF313131),

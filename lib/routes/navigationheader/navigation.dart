@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/routes/worklist/month_screen.dart';
+import 'package:todo_list_app/routes/worklist/today_screen.dart';
 
 class NavigationHeader extends StatelessWidget {
   const NavigationHeader({
@@ -42,13 +43,8 @@ class NavigationHeader extends StatelessWidget {
                 )
               ]),
         ),
-        body: const TabBarView(
-          children: [
-            Center(
-              child: Text("This is Today"),
-            ),
-            Month()
-          ],
+        body: TabBarView(
+          children: [Today(), Month()],
         ),
       ),
     );
