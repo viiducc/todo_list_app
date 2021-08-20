@@ -1,8 +1,8 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:todo_list_app/routes/AddCheckList/addchecklist_screen.dart';
+import 'package:todo_list_app/routes/AddNote/addnote_screen.dart';
 import 'package:todo_list_app/routes/newtask/newtask_screen.dart';
 
 class Tabs extends StatefulWidget {
@@ -70,7 +70,12 @@ class _TabsState extends State<Tabs> {
                             color: Colors.black.withOpacity(0.2),
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AddNote()));
+                            },
                             child: const Text(
                               "Add Quick Note",
                               style: TextStyle(
@@ -87,7 +92,12 @@ class _TabsState extends State<Tabs> {
                             color: Colors.black.withOpacity(0.2),
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AddCheckList()));
+                            },
                             child: const Text(
                               "Add Checklist",
                               style: TextStyle(
