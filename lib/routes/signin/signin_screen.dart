@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/routes/resetpassword/resetpassword_screen.dart';
-import 'package:todo_list_app/routes/worklist_screen.dart';
+import 'package:todo_list_app/routes/tabs/tabs.dart';
+import 'package:todo_list_app/routes/worklist/worklist_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -140,7 +141,7 @@ class _SignInState extends State<SignIn> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const WorkList()));
+                              builder: (context) => const Tabs()));
                     },
                     child: const Text(
                       'Log In',

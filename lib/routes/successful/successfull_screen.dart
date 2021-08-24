@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/routes/worklist_screen.dart';
+import 'package:todo_list_app/routes/tabs/tabs.dart';
 
 class Successful extends StatelessWidget {
   const Successful({Key? key}) : super(key: key);
@@ -10,8 +10,8 @@ class Successful extends StatelessWidget {
     return Scaffold(
       body: InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const WorkList()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Tabs()));
         },
         child: Center(
           child: Column(

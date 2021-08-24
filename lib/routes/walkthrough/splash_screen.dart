@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/routes/walkthrough/walkthrough_screen.dart';
+import 'package:todo_list_app/routes/Walkthrough/walkthrough_screen.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

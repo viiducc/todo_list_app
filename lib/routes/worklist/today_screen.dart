@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_list_app/data/task_list.dart';
 import 'package:todo_list_app/models/task.dart';
+import 'package:todo_list_app/routes/ViewTask/viewtask_screen.dart';
 
 class Today extends StatefulWidget {
   const Today({Key? key}) : super(key: key);
@@ -58,7 +59,12 @@ class _TodayState extends State<Today> {
                               Icons.edit,
                               color: Color(0xFFF96060),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ViewTask()));
+                            },
                           ),
                           IconSlideAction(
                             iconWidget: const Icon(

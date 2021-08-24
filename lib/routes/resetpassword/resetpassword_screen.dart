@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/routes/successful/successfull_screen.dart';
+import 'package:todo_list_app/routes/Successful/successfull_screen.dart';
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({Key? key}) : super(key: key);
