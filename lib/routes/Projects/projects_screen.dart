@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/routes/Tabs/tabs.dart';
+import 'package:todo_list_app/data/note_list.dart';
+import 'package:todo_list_app/data/project_list.dart';
+import 'package:todo_list_app/models/project.dart';
 
 class Project extends StatefulWidget {
   const Project({Key? key}) : super(key: key);
@@ -9,15 +11,7 @@ class Project extends StatefulWidget {
 }
 
 class _ProjectState extends State<Project> {
-  List data = [
-    {"color": Color(0xffff6968)},
-    {"color": Color(0xff7a54ff)},
-    {"color": Color(0xffff8f61)},
-    {"color": Color(0xffff8f61)},
-    {"color": Color(0xffff6968)},
-    {"color": Color(0xff7a54ff)},
-  ];
-
+  List<ProjectModel> items = List.of(projectList);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -47,12 +41,14 @@ class _ProjectState extends State<Project> {
               child: GridView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: data.length,
+                  itemCount: items.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 4.0,
                       mainAxisSpacing: 4.0),
                   itemBuilder: (context, index) {
+                    final item = items[index];
+
                     return Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 26, horizontal: 26),
@@ -67,7 +63,7 @@ class _ProjectState extends State<Project> {
                             width: 28,
                             height: 28,
                             decoration: BoxDecoration(
-                              color: Color(0xFFE42B6A)
+                              color: Color(item.color)
                                   .withOpacity(0.25), // border color
                               shape: BoxShape.circle,
                             ),
@@ -75,10 +71,9 @@ class _ProjectState extends State<Project> {
                               padding: EdgeInsets.all(6), // border width
                               child: Container(
                                 // or ClipRRect if you need to clip the content
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color:
-                                      Color(0xFFE42B6A), // inner circle color
+                                  color: Color(item.color),
                                 ),
                                 child: Container(), // inner content
                               ),
@@ -87,9 +82,9 @@ class _ProjectState extends State<Project> {
                           const SizedBox(
                             height: 46,
                           ),
-                          const Text(
-                            'Personal',
-                            style: TextStyle(
+                          Text(
+                            item.name,
+                            style: const TextStyle(
                               color: Color(0xFF313131),
                               fontFamily: 'AvenirNextRoundedPro',
                               fontWeight: FontWeight.bold,

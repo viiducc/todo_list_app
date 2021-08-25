@@ -55,17 +55,17 @@ class _TodayState extends State<Today> {
                         actionExtentRatio: 0.2,
                         secondaryActions: [
                           IconSlideAction(
-                            iconWidget: const Icon(
-                              Icons.edit,
-                              color: Color(0xFFF96060),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ViewTask()));
-                            },
-                          ),
+                              iconWidget: const Icon(
+                                Icons.edit,
+                                color: Color(0xFFF96060),
+                              ),
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return ViewTask();
+                                    });
+                              }),
                           IconSlideAction(
                             iconWidget: const Icon(
                               Icons.delete,
@@ -113,7 +113,9 @@ class _TodayState extends State<Today> {
             decoration: item.isDone == true
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-            color: item.isDone == true ? Color(0xFF9E9E9E) : Color(0xFF313131),
+            color: item.isDone == true
+                ? const Color(0xFF9E9E9E)
+                : const Color(0xFF313131),
             fontFamily: 'AvenirNextRoundedPro',
             fontWeight: FontWeight.normal,
             fontStyle: FontStyle.normal,

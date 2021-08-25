@@ -29,11 +29,7 @@ flutter:
     - assets/images/splash/
     - assets/images/walkthrough/
     - assets/images/successful/
-
-  
-  
-
-    
+    - assets/images/profile/
 
   fonts:
     - family: AvenirNextRoundedPro

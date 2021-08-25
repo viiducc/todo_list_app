@@ -59,7 +59,9 @@ class _WalkThroughState extends State<WalkThrough> {
                 primary: const Color(0xFFFFFFFF), // background
                 onPrimary: const Color(0xFF313131), // foreground
               ),
-              onPressed: () {},
+              onPressed: () {
+                openSignInScreen();
+              },
               child: const Text(
                 'Get Started',
                 style: TextStyle(

@@ -32,7 +32,7 @@ class _QuickState extends State<Quick> {
         centerTitle: true,
       ),
       body: Container(
-        margin: EdgeInsets.only(left: 32, right: 19),
+        margin: EdgeInsets.only(left: 32, right: 19, top: 43),
         //padding: EdgeInsets.only(left: 32, right: 19),
         child: ListView.builder(
           scrollDirection: Axis.vertical,
@@ -44,12 +44,14 @@ class _QuickState extends State<Quick> {
               children: [
                 Container(
                   height: 94,
-                  decoration: const BoxDecoration(
+                  width: 343,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3),
                     color: Colors.white,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Color(0xFFE0E0E0), spreadRadius: 2,
-                        blurRadius: 7,
+                        blurRadius: 9,
                         offset: Offset(5, 5), // Shadow position
                       ),
                     ],

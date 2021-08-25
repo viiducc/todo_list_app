@@ -87,7 +87,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 23),
+                  padding: const EdgeInsets.only(left: 23, top: 30),
                   child: Row(
                     children: [
                       Column(
@@ -228,7 +228,32 @@ class _ProfileState extends State<Profile> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: const Color(0xFF8560F9)),
-                  )
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Quick Notes',
+                            style: TextStyle(
+                                height: 2,
+                                fontFamily: 'AvenirNextRoundedPro',
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                          Text(
+                            '12 Tasks',
+                            style: TextStyle(
+                                height: 2,
+                                fontFamily: 'AvenirNextRoundedPro',
+                                color: Color(0xFFFFFFFF),
+                                fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -255,7 +280,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           CircularPercentIndicator(
-                            radius: 80.0,
+                            radius: 90.0,
                             lineWidth: 2,
                             animation: true,
                             animationDuration: 1200,
@@ -271,6 +296,9 @@ class _ProfileState extends State<Profile> {
                                   fontSize: 18),
                             ),
                             progressColor: Color(0xFFF96060),
+                          ),
+                          SizedBox(
+                            height: 14,
                           ),
                           const Text(
                             'Events',
@@ -288,7 +316,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           CircularPercentIndicator(
-                            radius: 80.0,
+                            radius: 90.0,
                             lineWidth: 2,
                             animation: true,
                             animationDuration: 1200,
@@ -304,6 +332,9 @@ class _ProfileState extends State<Profile> {
                                   fontSize: 18),
                             ),
                             progressColor: Color(0xFFF6074F9),
+                          ),
+                          SizedBox(
+                            height: 14,
                           ),
                           const Text(
                             'To do',
@@ -321,7 +352,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           CircularPercentIndicator(
-                            radius: 80.0,
+                            radius: 90.0,
                             lineWidth: 2,
                             animation: true,
                             animationDuration: 1200,
@@ -337,6 +368,9 @@ class _ProfileState extends State<Profile> {
                                   fontSize: 18),
                             ),
                             progressColor: Color(0xFF8560F9),
+                          ),
+                          SizedBox(
+                            height: 14,
                           ),
                           const Text(
                             'Quick Notes',
