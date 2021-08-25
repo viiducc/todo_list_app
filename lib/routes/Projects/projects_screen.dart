@@ -16,12 +16,6 @@ class _ProjectState extends State<Project> {
     {"color": Color(0xffff8f61)},
     {"color": Color(0xffff6968)},
     {"color": Color(0xff7a54ff)},
-    {"color": Color(0xffff8f61)},
-    {"color": Color(0xffff8f61)},
-    {"color": Color(0xffff6968)},
-    {"color": Color(0xff7a54ff)},
-    {"color": Color(0xffff8f61)},
-    {"color": Color(0xffff8f61)},
   ];
 
   @override
