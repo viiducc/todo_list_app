@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_list_app/routes/AddCheckList/addchecklist_screen.dart';
 import 'package:todo_list_app/routes/AddNote/addnote_screen.dart';
 import 'package:todo_list_app/routes/Profile/profile_screen.dart';
@@ -130,19 +131,63 @@ class _TabsState extends State<Tabs> {
         height: 60,
         child: BottomNavigationBar(
           backgroundColor: const Color(0xFF292E4E),
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.check_circle), label: 'My Task'),
+                icon: SvgPicture.asset(
+                  'assets/icons/tabs/my_task.svg',
+                  height: 24,
+                  width: 24,
+                ),
+                activeIcon: SvgPicture.asset(
+                  'assets/icons/tabs/my_task.svg',
+                  color: Colors.white,
+                  height: 24,
+                  width: 19,
+                ),
+                label: 'My Task'),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
+              icon: SvgPicture.asset(
+                'assets/icons/tabs/menu.svg',
+                // color: Color(0xFF9E9E9E),
+                height: 24,
+                width: 24,
+              ),
+              activeIcon: SvgPicture.asset(
+                'assets/icons/tabs/menu.svg',
+                color: Colors.white,
+                height: 24,
+                width: 19,
+              ),
               label: 'Menu',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.content_paste),
+              icon: SvgPicture.asset(
+                'assets/icons/tabs/quick.svg',
+                // color: Color(0xFF9E9E9E),
+                height: 24,
+                width: 19,
+              ),
+              activeIcon: SvgPicture.asset(
+                'assets/icons/tabs/quick.svg',
+                color: Colors.white,
+                height: 24,
+                width: 19,
+              ),
               label: 'Quick',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: SvgPicture.asset(
+                'assets/icons/tabs/profile.svg',
+                // color: Color(0xFF9E9E9E),
+                height: 24,
+                width: 19,
+              ),
+              activeIcon: SvgPicture.asset(
+                'assets/icons/tabs/profile.svg',
+                color: Colors.white,
+                height: 24,
+                width: 19,
+              ),
               label: 'Profile',
             ),
           ],
@@ -174,6 +219,8 @@ class _TabsState extends State<Tabs> {
         return Quick();
       case 3:
         return Profile();
+      case -1:
+        return Container();
       default:
     }
   }

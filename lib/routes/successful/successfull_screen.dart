@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:todo_list_app/routes/tabs/tabs.dart';
 
 class Successful extends StatelessWidget {
@@ -20,7 +21,12 @@ class Successful extends StatelessWidget {
               const SizedBox(
                 height: 170,
               ),
-              Image.asset('assets/images/successful/Successful.png'),
+              SvgPicture.asset(
+                'assets/images/successful/Successful.svg',
+                // color: Color(0xFF9E9E9E),
+                height: 170,
+                width: 162,
+              ),
               const SizedBox(
                 height: 40,
               ),

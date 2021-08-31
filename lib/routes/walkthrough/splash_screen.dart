@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:todo_list_app/routes/Walkthrough/walkthrough_screen.dart';
 
 class Splash extends StatefulWidget {
@@ -24,7 +25,12 @@ class _SplashState extends State<Splash> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/images/splash/fill1.png'),
+            SvgPicture.asset(
+              'assets/images/splash/splash.svg',
+              // color: Color(0xFF9E9E9E),
+              height: 149,
+              width: 149,
+            ),
             Container(
               margin: const EdgeInsets.all(20),
               child: const Text(

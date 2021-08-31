@@ -17,12 +17,6 @@ class _WorkListState extends State<WorkList> {
       body: Stack(
         children: const [
           NavigationHeader(),
-          // Positioned(
-          //   left: 0,
-          //   right: 0,
-          //   bottom: 0,
-          //   child: Tabs(),
-          // ),
         ],
       ),
     );
