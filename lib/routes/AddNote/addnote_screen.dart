@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:todo_list_app/routes/tabs/tabs.dart';
+import 'package:todo_list_app/widgets/color_picker.dart';
 
 class AddNote extends StatefulWidget {
   const AddNote({Key? key}) : super(key: key);
@@ -10,6 +12,14 @@ class AddNote extends StatefulWidget {
 }
 
 class _AddNoteState extends State<AddNote> {
+  TextEditingController descriptionController = TextEditingController();
+  int _chosenColor = 0xFF6074F9;
+
+  void dispose() {
+    descriptionController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,7 +43,7 @@ class _AddNoteState extends State<AddNote> {
               height: 44,
               color: const Color(0xFFF96060),
             ),
-            Positioned(left: 0, right: 0, bottom: 0, child: Tabs()),
+            // Positioned(left: 0, right: 0, bottom: 0, child: Tabs()),
             Container(
               // width: MediaQuery.of(context).size.width,
               // height: MediaQuery.of(context).size.height * 0.85,
@@ -54,78 +64,41 @@ class _AddNoteState extends State<AddNote> {
                           'Description',
                           style: TextStyle(
                               color: Color(0xFF313131),
-                              fontFamily: 'AvenirNextRoundedPro',
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
                         child: TextFormField(
+                          controller: descriptionController,
                           maxLines: 7,
                           decoration: const InputDecoration(
-                            hintText:
-                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                            hintText: 'Enter your description',
                             border: InputBorder.none,
                             hintStyle: TextStyle(
                               color: Color(0xFF313131),
-                              fontFamily: 'AvenirNextRoundedPro',
                               // fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
                           ),
-                          style: const TextStyle(
-                              fontFamily: 'AvenirNextRoundedPro', fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                         ),
                       ),
                       const Text(
                         'Choose Color',
                         style: TextStyle(
                             color: Color(0xFF313131),
-                            fontFamily: 'AvenirNextRoundedPro',
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 17),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF6074F9),
-                                  borderRadius: BorderRadius.circular(5)),
-                            ),
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFFE42B6A),
-                                  borderRadius: BorderRadius.circular(5)),
-                            ),
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF5ABB56),
-                                  borderRadius: BorderRadius.circular(5)),
-                            ),
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF3D3A62),
-                                  borderRadius: BorderRadius.circular(5)),
-                            ),
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFFF4CA8F),
-                                  borderRadius: BorderRadius.circular(5)),
-                            )
-                          ],
+                        child: ColorPicker(
+                          onSelectColor: (value) {
+                            setState(() {
+                              _chosenColor = value;
+                            });
+                          },
                         ),
                       ),
                       Container(
@@ -138,12 +111,13 @@ class _AddNoteState extends State<AddNote> {
                             ),
                             primary: const Color(0xFFF96060), // background
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            addNote();
+                          },
                           child: const Text(
                             'Done',
                             style: TextStyle(
                               color: Color(0xFFFFFFFF),
-                              fontFamily: 'AvenirNextRoundedPro',
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
@@ -159,5 +133,21 @@ class _AddNoteState extends State<AddNote> {
         ),
       ),
     );
+  }
+
+  void addNote() {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("quick_note")
+        .add({
+          'task': descriptionController.text.trim(),
+          'color': _chosenColor,
+          'type': 'Quick Note',
+        })
+        .then((value) => print("Quick Note Added"))
+        .catchError((error) => print("Failed to add Quick Note: $error"));
+    ;
+    Navigator.pop(context);
   }
 }

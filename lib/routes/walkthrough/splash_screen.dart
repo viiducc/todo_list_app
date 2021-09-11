@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_list_app/routes/Walkthrough/walkthrough_screen.dart';
+import 'package:todo_list_app/routes/tabs/tabs.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -37,7 +39,6 @@ class _SplashState extends State<Splash> {
                 'aking',
                 style: TextStyle(
                   color: Color(0xFF010101),
-                  fontFamily: 'AvenirNextRoundedPro',
                   fontWeight: FontWeight.w900,
                   fontSize: 48,
                 ),
@@ -50,7 +51,12 @@ class _SplashState extends State<Splash> {
   }
 
   void onFinish() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const WalkThrough()));
+    if (FirebaseAuth.instance.currentUser != null) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Tabs()));
+      print(FirebaseAuth.instance.currentUser);
+    } else
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const WalkThrough()));
   }
 }

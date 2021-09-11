@@ -1,5 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:todo_list_app/routes/SignIn/signin_screen.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -9,8 +15,12 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String email = '';
+  String fullname = '';
+
   @override
   Widget build(BuildContext context) {
+    loadUser();
     return Scaffold(
       backgroundColor: const Color(0xFFFDFDFD),
       appBar: AppBar(
@@ -21,7 +31,6 @@ class _ProfileState extends State<Profile> {
           'Profile',
           style: TextStyle(
             color: Color(0xFF313131),
-            fontFamily: 'AvenirNextRoundedPro',
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -48,41 +57,66 @@ class _ProfileState extends State<Profile> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [Icon(Icons.settings)],
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          print(_auth.currentUser?.displayName);
+                        },
+                        icon: Icon(Icons.settings))
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 23),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // const CircleAvatar(
                       //     backgroundColor: Colors.black, child: Text('VĐ')),
-                      Image.asset('assets/images/profile/StephenChow.png'),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            'Stephen Chow',
-                            style: TextStyle(
-                                height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
-                                color: Color(0xFF313131),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
+                      Row(
+                        children: [
+                          // Image.asset('assets/images/profile/StephenChow.png'),
+                          const CircleAvatar(
+                              backgroundColor: Color(0xFFF96060),
+                              foregroundColor: Colors.white,
+                              radius: 25,
+                              child: Icon(
+                                Icons.account_circle,
+                                size: 50,
+                              )),
+
+                          const SizedBox(
+                            width: 20,
                           ),
-                          Text(
-                            'hungnm@devera.vn',
-                            style: TextStyle(
-                                height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
-                                color: Color(0xFF9A9A9A),
-                                fontSize: 16),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                fullname,
+                                style: TextStyle(
+                                    height: 2,
+                                    color: Color(0xFF313131),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              ),
+                              Text(
+                                email,
+                                style: const TextStyle(
+                                    height: 2,
+                                    color: Color(0xFF9A9A9A),
+                                    fontSize: 16),
+                              ),
+                            ],
                           ),
                         ],
                       ),
+                      IconButton(
+                          onPressed: () {
+                            logOut();
+                          },
+                          icon: const Icon(
+                            Icons.logout,
+                            size: 30,
+                          ))
                     ],
                   ),
                 ),
@@ -98,7 +132,6 @@ class _ProfileState extends State<Profile> {
                             '120',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFF313131),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
@@ -107,7 +140,6 @@ class _ProfileState extends State<Profile> {
                             'Create Tasks',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFF9A9A9A),
                                 fontSize: 16),
                           ),
@@ -124,7 +156,6 @@ class _ProfileState extends State<Profile> {
                             '80',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFF313131),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
@@ -133,7 +164,6 @@ class _ProfileState extends State<Profile> {
                             'Completed Tasks',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFF9A9A9A),
                                 fontSize: 16),
                           ),
@@ -166,7 +196,6 @@ class _ProfileState extends State<Profile> {
                             'Event',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFFFFFFFF),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
@@ -175,7 +204,6 @@ class _ProfileState extends State<Profile> {
                             '12 Tasks',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFFFFFFFF),
                                 fontSize: 14),
                           ),
@@ -202,7 +230,6 @@ class _ProfileState extends State<Profile> {
                             'To do Task',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFFFFFFFF),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
@@ -211,7 +238,6 @@ class _ProfileState extends State<Profile> {
                             '12 Tasks',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFFFFFFFF),
                                 fontSize: 14),
                           ),
@@ -237,7 +263,6 @@ class _ProfileState extends State<Profile> {
                             'Quick Notes',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFFFFFFFF),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
@@ -246,7 +271,6 @@ class _ProfileState extends State<Profile> {
                             '12 Tasks',
                             style: TextStyle(
                                 height: 2,
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFFFFFFFF),
                                 fontSize: 14),
                           ),
@@ -267,7 +291,6 @@ class _ProfileState extends State<Profile> {
                   const Text(
                     "Statistic",
                     style: TextStyle(
-                        fontFamily: 'AvenirNextRoundedPro',
                         color: Color(0xFF313131),
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
@@ -290,7 +313,6 @@ class _ProfileState extends State<Profile> {
                               '60%',
                               style: TextStyle(
                                   height: 2,
-                                  fontFamily: 'AvenirNextRoundedPro',
                                   color: Color(0xFF313131),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
@@ -303,7 +325,6 @@ class _ProfileState extends State<Profile> {
                           const Text(
                             'Events',
                             style: TextStyle(
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFF313131),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16),
@@ -326,7 +347,6 @@ class _ProfileState extends State<Profile> {
                               '40%',
                               style: TextStyle(
                                   height: 2,
-                                  fontFamily: 'AvenirNextRoundedPro',
                                   color: Color(0xFF313131),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
@@ -339,7 +359,6 @@ class _ProfileState extends State<Profile> {
                           const Text(
                             'To do',
                             style: TextStyle(
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFF313131),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16),
@@ -362,7 +381,6 @@ class _ProfileState extends State<Profile> {
                               '80%',
                               style: TextStyle(
                                   height: 2,
-                                  fontFamily: 'AvenirNextRoundedPro',
                                   color: Color(0xFF313131),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
@@ -375,7 +393,6 @@ class _ProfileState extends State<Profile> {
                           const Text(
                             'Quick Notes',
                             style: TextStyle(
-                                fontFamily: 'AvenirNextRoundedPro',
                                 color: Color(0xFF313131),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16),
@@ -389,5 +406,64 @@ class _ProfileState extends State<Profile> {
         ],
       ),
     );
+  }
+
+  Future<void> logOut() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text(
+            'Are you sure?',
+            style: TextStyle(
+                height: 2,
+                color: Color(0xFF313131),
+                fontWeight: FontWeight.bold,
+                fontSize: 20),
+          ),
+          content: const Text(
+            'You will be redirected to login ',
+            style: TextStyle(height: 2, color: Color(0xFF313131), fontSize: 18),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Yes',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFF96060))),
+              // color: Color(0xFFF96060))),
+              onPressed: () async {
+                //Log out user Firebase
+                await FirebaseAuth.instance.signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const SignIn()));
+              },
+            ),
+            TextButton(
+              child: const Text('No',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  )),
+              onPressed: () {
+                Navigator.of(context).pop(); //Dismiss the Dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void loadUser() {
+    User? currentUser = _auth.currentUser;
+    if (currentUser != null) {
+      setState(() {
+        email = currentUser.email!;
+        fullname = currentUser.displayName!;
+      });
+    }
   }
 }

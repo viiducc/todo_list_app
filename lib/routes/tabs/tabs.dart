@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:todo_list_app/data/quick_note_list.dart.dart';
 import 'package:todo_list_app/routes/AddCheckList/addchecklist_screen.dart';
 import 'package:todo_list_app/routes/AddNote/addnote_screen.dart';
 import 'package:todo_list_app/routes/Profile/profile_screen.dart';
@@ -35,91 +36,7 @@ class _TabsState extends State<Tabs> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFFF96060),
         onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return Dialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ), //this right here
-                  child: SizedBox(
-                    height: 214,
-                    width: 268,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const SizedBox(
-                          height: 1,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => NewTask()));
-                          },
-                          child: const Text(
-                            "Add Task",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'AvenirNextRoundedPro',
-                              fontSize: 18,
-                              color: Color(0xFF313131),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 1,
-                          margin: const EdgeInsets.symmetric(horizontal: 30),
-                          color: Colors.black.withOpacity(0.2),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddNote()));
-                          },
-                          child: const Text(
-                            "Add Quick Note",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'AvenirNextRoundedPro',
-                              fontSize: 18,
-                              color: Color(0xFF313131),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 1,
-                          margin: const EdgeInsets.symmetric(horizontal: 30),
-                          color: Colors.black.withOpacity(0.2),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddCheckList()));
-                          },
-                          child: const Text(
-                            "Add Checklist",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'AvenirNextRoundedPro',
-                              fontSize: 18,
-                              color: Color(0xFF313131),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 1,
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              });
+          addFloatButton();
         },
         child: const Icon(
           Icons.add,
@@ -219,9 +136,93 @@ class _TabsState extends State<Tabs> {
         return Quick();
       case 3:
         return Profile();
-      case -1:
-        return Container();
       default:
     }
+  }
+
+  addFloatButton() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ), //this right here
+            child: SizedBox(
+              height: 214,
+              width: 268,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => NewTask()));
+                    },
+                    child: const Text(
+                      "Add Task",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'AvenirNextRoundedPro',
+                        fontSize: 18,
+                        color: Color(0xFF313131),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 1,
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    color: Colors.black.withOpacity(0.2),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddNote()));
+                    },
+                    child: const Text(
+                      "Add Quick Note",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'AvenirNextRoundedPro',
+                        fontSize: 18,
+                        color: Color(0xFF313131),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 1,
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    color: Colors.black.withOpacity(0.2),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddCheckList()));
+                    },
+                    child: const Text(
+                      "Add Checklist",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'AvenirNextRoundedPro',
+                        fontSize: 18,
+                        color: Color(0xFF313131),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 1,
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

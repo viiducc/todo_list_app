@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/routes/worklist/month_screen.dart';
@@ -18,13 +19,15 @@ class NavigationHeader extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.west),
-            onPressed: () {},
+            onPressed: () {
+              print(FirebaseAuth.instance.currentUser);
+            },
           ),
           title: const Text(
             'Work List',
           ),
           centerTitle: true,
-          actions: [
+          actions: const [
             MyPopupMenu(),
           ],
           backgroundColor: const Color(0xFFF96060),
