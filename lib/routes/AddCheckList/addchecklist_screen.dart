@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:todo_list_app/models/check_list_model.dart';
-import 'package:todo_list_app/models/note_model.dart';
-import 'package:todo_list_app/routes/tabs/tabs.dart';
 import 'package:todo_list_app/widgets/color_picker.dart';
 
 class AddCheckList extends StatefulWidget {
@@ -19,14 +17,17 @@ class _AddCheckListState extends State<AddCheckList> {
   TextEditingController titleController = TextEditingController();
   int _chosenColor = 0xFF6074F9;
   bool checked = false;
-  List<int> selectedList = [];
   int indexCheckItem = 4;
-  List<TextEditingController> _listItemController = [
+
+  final List<TextEditingController> _listItemController = [
     for (int i = 0; i < 10; i++) TextEditingController(),
   ];
+  final List<bool> _listCheckBox = [
+    for (int i = 0; i < 10; i++) false,
+  ];
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -94,11 +95,14 @@ class _AddCheckListState extends State<AddCheckList> {
                               fontFamily: 'AvenirNextRoundedPro', fontSize: 18),
                         ),
                       ),
+                      // for (int i = 0; i < indexCheckItem; i++)
                       for (int i = 0; i < indexCheckItem; i++)
-                        CheckItem(
+                        CheckBoxWidget(
                           index: i,
-                          controller: _listItemController[i],
+                          titleController: _listItemController[i],
+                          checkController: _listCheckBox[i],
                         ),
+
                       SizedBox(height: 12),
                       Row(
                         children: [
@@ -190,7 +194,7 @@ class _AddCheckListState extends State<AddCheckList> {
   void AddCheckList() {
     List<Item> listItem = <Item>[];
     for (int i = 0; i < indexCheckItem; i++) {
-      listItem.add(Item(true, _listItemController[i].text.trim()));
+      listItem.add(Item(_listCheckBox[i], _listItemController[i].text.trim()));
     }
     FirebaseFirestore.instance
         .collection('users')
@@ -211,56 +215,45 @@ class _AddCheckListState extends State<AddCheckList> {
   }
 }
 
-class CheckItem extends StatelessWidget {
-  const CheckItem({
-    Key? key,
-    required this.index,
-    required this.controller,
-  }) : super(key: key);
-
+class CheckBoxWidget extends StatefulWidget {
+  CheckBoxWidget(
+      {Key? key,
+      required this.titleController,
+      required this.checkController,
+      required this.index})
+      : super(key: key);
+  final TextEditingController titleController;
+  bool checkController;
   final int index;
-  final TextEditingController controller;
+
+  @override
+  State<CheckBoxWidget> createState() => _CheckBoxWidgetState();
+}
+
+class _CheckBoxWidgetState extends State<CheckBoxWidget> {
+  bool _checked = false;
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 24),
-      width: size.width,
-      height: 20,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              color: Color(0xFFF4F4F4),
-              borderRadius: BorderRadius.circular(3),
-              border: Border.all(
-                color: Color(0xFF979797),
-              ),
-            ),
+    return CheckboxListTile(
+      title: TextFormField(
+        controller: widget.titleController,
+        decoration: InputDecoration(
+          hintText: "List Item ${widget.index + 1}",
+          hintStyle: const TextStyle(
+            color: Colors.black,
           ),
-          SizedBox(width: 14),
-          Container(
-            width: size.width * .4,
-            height: 40,
-            child: TextFormField(
-              controller: controller,
-              // validator: (val) =>
-              //     val!.isNotEmpty ? null : "Please enter list item",
-              decoration: InputDecoration(
-                hintText: "List Item ${index + 1}",
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-        ],
+          border: InputBorder.none,
+        ),
       ),
+      controlAffinity: ListTileControlAffinity.leading,
+      value: _checked,
+      onChanged: (bool? value) {
+        setState(() {
+          _checked = value! ? true : false;
+        });
+        widget.checkController = _checked;
+      },
     );
   }
 }

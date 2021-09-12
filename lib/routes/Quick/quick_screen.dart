@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/data/note_list.dart';
+import 'package:todo_list_app/data/quick_note_list.dart';
 import 'package:todo_list_app/models/check_list_model.dart';
 import 'package:todo_list_app/models/note_model.dart';
 import 'package:todo_list_app/models/quick_note.dart';
+import 'package:todo_list_app/routes/AddCheckList/addchecklist_screen.dart';
 
 class Quick extends StatefulWidget {
   const Quick({Key? key}) : super(key: key);
@@ -12,8 +13,7 @@ class Quick extends StatefulWidget {
 }
 
 class _QuickState extends State<Quick> {
-  List<QuickNote> items = [];
-  // List<Note> items = List.of(quickNoteList);
+  List<QuickNote> items = getQuickNoteList();
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +136,12 @@ class _QuickState extends State<Quick> {
                               ),
                             ),
                           ),
+                          // for (int i = 0; i < item.length; i++)
+                          //   CheckBoxWidget(
+                          //     index: i,
+                          //     titleController: item.item,
+                          //     checkController: _listCheckBox[i],
+                          //   ),
                         ],
                       ),
                     ),

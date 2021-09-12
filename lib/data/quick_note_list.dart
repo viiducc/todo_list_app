@@ -16,8 +16,13 @@ List<QuickNote> getQuickNoteList() {
     querySnapshot.docs.forEach((doc) {
       doc["type"] == 'Quick Note'
           ? quickNoteList.add(Note(doc["task"], doc["color"]))
-          : quickNoteList
-              .add(CheckList(doc["title"], doc["color"], doc["length"]));
+          : quickNoteList.add(CheckList(
+              doc["title"],
+              doc["color"],
+              doc["length"],
+              List<Item>.from(doc["listItem"].map((item) {
+                return Item(item["checked"], item["text"]);
+              }))));
     });
   });
   return quickNoteList;

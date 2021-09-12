@@ -4,8 +4,8 @@ class CheckList extends QuickNote {
   final String title;
   final int color;
   final int length;
-  // final List<Item> item;
-  CheckList(this.title, this.color, this.length);
+  final List<Item> item;
+  CheckList(this.title, this.color, this.length, this.item);
 }
 
 // Object Item in Check List

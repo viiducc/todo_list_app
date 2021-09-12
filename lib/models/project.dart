@@ -1,5 +1,7 @@
 class ProjectModel {
-  final String name;
+  final String title;
   final int color;
-  ProjectModel(this.name, this.color);
+  final int tasks;
+
+  ProjectModel(this.title, this.color, this.tasks);
 }

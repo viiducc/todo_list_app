@@ -1,9 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_list_app/models/project.dart';
 
-final projectList = [
-  ProjectModel('Personal', 0xFF6074F9),
-  ProjectModel('Teamworks', 0xFFE42B6A),
-  ProjectModel('Home', 0xFF5ABB56),
-  ProjectModel('Meet', 0xFFBC79C3),
-  // ProjectModel('Personal', 0xFF6074F9),
-];
+var projectList = <ProjectModel>[];
+List<ProjectModel> getProjectList() {
+  FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection('project')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    projectList = [];
+    querySnapshot.docs.forEach((doc) {
+      projectList.add(ProjectModel(doc["title"], doc["color"], doc["task"]));
+    });
+  });
+  return projectList;
+}

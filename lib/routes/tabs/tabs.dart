@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list_app/data/quick_note_list.dart.dart';
 import 'package:todo_list_app/routes/AddCheckList/addchecklist_screen.dart';
 import 'package:todo_list_app/routes/AddNote/addnote_screen.dart';
 import 'package:todo_list_app/routes/Profile/profile_screen.dart';

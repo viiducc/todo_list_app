@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/routes/newtask/widget/due_date.dart';
+import 'package:todo_list_app/routes/newtask/widget/due_time.dart';
 import 'package:todo_list_app/routes/tabs/tabs.dart';
 
 class NewTask extends StatefulWidget {
@@ -9,11 +12,21 @@ class NewTask extends StatefulWidget {
 }
 
 class _NewTaskState extends State<NewTask> {
+  final User? user = FirebaseAuth.instance.currentUser;
+  String link = '';
+  String _projectValue = '', _projectId = '';
+  // ignore: avoid_init_to_null
+  DateTime? _myDate = null;
+  // ignore: avoid_init_to_null
+  TimeOfDay? _myTime = null;
+  List<String> member = [];
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         leading: Icon(Icons.west),
@@ -41,224 +54,222 @@ class _NewTaskState extends State<NewTask> {
                 height: 90,
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.85,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                  color: Colors.white),
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 32,
+            SingleChildScrollView(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.85,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'For',
-                          style: TextStyle(
-                            color: Color(0xFF313131),
-                            fontFamily: 'AvenirNextRoundedPro',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 8),
-                          padding: const EdgeInsets.all(14),
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50),
-                            ),
-                            color: Color(0xFFF4F4F4),
-                          ),
-                          child: const Text(
-                            'Assignee',
-                            style: TextStyle(
-                              color: Color(0xFF313131),
-                              fontFamily: 'AvenirNextRoundedPro',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 60,
-                        ),
-                        const Text(
-                          'In',
-                          style: TextStyle(
-                            color: Color(0xFF313131),
-                            fontFamily: 'AvenirNextRoundedPro',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 8),
-                          padding: const EdgeInsets.all(14),
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50),
-                            ),
-                            color: Color(0xFFF4F4F4),
-                          ),
-                          child: const Text(
-                            'Project',
-                            style: TextStyle(
-                              color: Color(0xFF313131),
-                              fontFamily: 'AvenirNextRoundedPro',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Container(
-                      color: const Color(0xFFF4F4F4),
-                      padding: const EdgeInsets.all(24),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Title',
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(
-                            color: Color(0xFF313131),
-                            fontFamily: 'AvenirNextRoundedPro',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        style: const TextStyle(
-                            fontFamily: 'AvenirNextRoundedPro', fontSize: 18),
+                    color: Colors.white),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 32,
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(24),
-                      child: const Text(
-                        'Description',
-                        style: TextStyle(
-                          color: Color(0xFF9E9E9E),
-                          fontFamily: 'AvenirNextRoundedPro',
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 24),
-                      //padding: EdgeInsets.symmetric(vertical: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                          color: Color(0xFFEAEAEA),
-                        ),
-                      ),
-                      child: Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            // height: 75,
-                            child: TextFormField(
-                              maxLines: 3,
-                              cursorColor: Color(0xFFEAEAEA),
-                              // decoration: InputDecoration(
-                              //   border: OutlineInputBorder(
-                              //       borderRadius: BorderRadius.circular(5),
-                              //       borderSide: const BorderSide(
-                              //           color: Color(0xFFEAEAEA))),
-                              // ),
+                          const Text(
+                            'For',
+                            style: TextStyle(
+                              color: Color(0xFF313131),
+                              fontFamily: 'AvenirNextRoundedPro',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
                             ),
                           ),
                           Container(
-                            height: 48,
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            color: const Color(0xFFF8F8F8),
-                            child: Row(
-                              children: const [
-                                Icon(Icons.attach_file),
-                              ],
+                            margin: const EdgeInsets.only(left: 8),
+                            padding: const EdgeInsets.all(14),
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(50),
+                              ),
+                              color: Color(0xFFF4F4F4),
+                            ),
+                            child: Text(
+                              user!.displayName.toString().substring(0, 8),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 60,
+                          ),
+                          const Text(
+                            'In',
+                            style: TextStyle(
+                              color: Color(0xFF313131),
+                              fontFamily: 'AvenirNextRoundedPro',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 8),
+                            padding: const EdgeInsets.all(14),
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(50),
+                              ),
+                              color: Color(0xFFF4F4F4),
+                            ),
+                            child: const Text(
+                              'Project',
+                              style: TextStyle(
+                                color: Color(0xFF313131),
+                                fontFamily: 'AvenirNextRoundedPro',
+                                fontSize: 14,
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    Container(
-                      color: const Color(0xFFF4F4F4),
-                      margin: EdgeInsets.symmetric(vertical: 24),
-                      padding: EdgeInsets.all(25),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Due Date',
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(
-                            color: Color(0xFF313131),
-                            fontFamily: 'AvenirNextRoundedPro',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        style: const TextStyle(
-                            fontFamily: 'AvenirNextRoundedPro', fontSize: 18),
+                      const SizedBox(
+                        height: 24,
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 24),
-                      child: const Text(
-                        'Add Member',
-                        style: TextStyle(
-                            color: Color(0xFF313131),
+                      Container(
+                        height: 66,
+                        color: const Color(0xFFF4F4F4),
+                        padding: const EdgeInsets.all(24),
+                        child: TextFormField(
+                          controller: _titleController,
+                          decoration: const InputDecoration(
+                            hintText: 'Title',
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: Color(0xFF313131),
+                              fontFamily: 'AvenirNextRoundedPro',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          style: const TextStyle(
+                              fontFamily: 'AvenirNextRoundedPro', fontSize: 18),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(24),
+                        child: const Text(
+                          'Description',
+                          style: TextStyle(
+                            color: Color(0xFF9E9E9E),
                             fontFamily: 'AvenirNextRoundedPro',
                             fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(11, 8, 0, 36),
-                      padding: const EdgeInsets.all(14),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(50),
-                        ),
-                        color: Color(0xFFF4F4F4),
-                      ),
-                      child: const Text(
-                        'Anyone',
-                        style: TextStyle(
-                          color: Color(0xFF313131),
-                          fontFamily: 'AvenirNextRoundedPro',
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 24),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(327, 48),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
                           ),
-                          primary: const Color(0xFFF96060), // background
                         ),
-                        onPressed: () {},
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 24),
+                        //padding: EdgeInsets.symmetric(vertical: 20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: Color(0xFFEAEAEA),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              // height: 75,
+                              child: TextFormField(
+                                maxLines: 3,
+                                cursorColor: Color(0xFFEAEAEA),
+                                // decoration: InputDecoration(
+                                //   border: OutlineInputBorder(
+                                //       borderRadius: BorderRadius.circular(5),
+                                //       borderSide: const BorderSide(
+                                //           color: Color(0xFFEAEAEA))),
+                                // ),
+                              ),
+                            ),
+                            Container(
+                              height: 48,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              color: const Color(0xFFF8F8F8),
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.attach_file),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 24),
+                      DueDate(
+                        date: _myDate,
+                        press: setDate,
+                      ),
+                      // DueTime(
+                      //   time: _myTime,
+                      //   press: setTime,
+                      // ),
+                      SizedBox(height: 24),
+                      Container(
+                        padding: const EdgeInsets.only(left: 24),
                         child: const Text(
-                          'Add Task',
+                          'Add Member',
                           style: TextStyle(
-                            color: Color(0xFFFFFFFF),
+                              color: Color(0xFF313131),
+                              fontFamily: 'AvenirNextRoundedPro',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(28, 8, 0, 36),
+                        padding: const EdgeInsets.all(14),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(50),
+                          ),
+                          color: Color(0xFFF4F4F4),
+                        ),
+                        child: const Text(
+                          'Anyone',
+                          style: TextStyle(
+                            color: Color(0xFF313131),
                             fontFamily: 'AvenirNextRoundedPro',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 14,
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 24),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(327, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            primary: const Color(0xFFF96060), // background
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            'Add Task',
+                            style: TextStyle(
+                              color: Color(0xFFFFFFFF),
+                              fontFamily: 'AvenirNextRoundedPro',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -266,5 +277,17 @@ class _NewTaskState extends State<NewTask> {
         ),
       ),
     );
+  }
+
+  void setDate(date) {
+    setState(() {
+      _myDate = date;
+    });
+  }
+
+  void setTime(time) {
+    setState(() {
+      _myTime = time;
+    });
   }
 }

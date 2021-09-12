@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:todo_list_app/routes/Profile/info.dart';
 import 'package:todo_list_app/routes/SignIn/signin_screen.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -39,142 +40,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            padding: const EdgeInsets.fromLTRB(23, 10, 10, 29),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0xFFE0E0E0), spreadRadius: 2,
-                  blurRadius: 7,
-                  offset: Offset(5, 5), // Shadow position
-                ),
-              ],
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          print(_auth.currentUser?.displayName);
-                        },
-                        icon: Icon(Icons.settings))
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 23),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // const CircleAvatar(
-                      //     backgroundColor: Colors.black, child: Text('VĐ')),
-                      Row(
-                        children: [
-                          // Image.asset('assets/images/profile/StephenChow.png'),
-                          const CircleAvatar(
-                              backgroundColor: Color(0xFFF96060),
-                              foregroundColor: Colors.white,
-                              radius: 25,
-                              child: Icon(
-                                Icons.account_circle,
-                                size: 50,
-                              )),
-
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                fullname,
-                                style: TextStyle(
-                                    height: 2,
-                                    color: Color(0xFF313131),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              ),
-                              Text(
-                                email,
-                                style: const TextStyle(
-                                    height: 2,
-                                    color: Color(0xFF9A9A9A),
-                                    fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            logOut();
-                          },
-                          icon: const Icon(
-                            Icons.logout,
-                            size: 30,
-                          ))
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 23, top: 30),
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            '120',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFF313131),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          Text(
-                            'Create Tasks',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFF9A9A9A),
-                                fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 53,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            '80',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFF313131),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          Text(
-                            'Completed Tasks',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFF9A9A9A),
-                                fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+          InfoUser(),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
