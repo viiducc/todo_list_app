@@ -12,8 +12,6 @@
 
 # Getting Started
 
-This project is used to demonstrate in [Devera](https://devera.vn) Flutter course how to create a Flutter application in which an user can register and login using the Firebase authentication system.
-
 # How to use
 
 ## Step 1: 
