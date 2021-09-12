@@ -159,18 +159,22 @@ class _InfoUserState extends State<InfoUser> {
                                     '$link',
                                   ),
                                 )
-                              : CircleAvatar(
-                                  radius: 80.0,
-                                  backgroundImage: AssetImage(
-                                    "assets/images/loader.gif",
-                                  ),
-                                )
-                          : CircleAvatar(
-                              radius: 80.0,
-                              backgroundImage: AssetImage(
-                                "assets/images/none-avatar.png",
-                              ),
-                            ),
+                              : const CircleAvatar(
+                                  backgroundColor: Color(0xFFF96060),
+                                  foregroundColor: Colors.white,
+                                  radius: 25,
+                                  child: Icon(
+                                    Icons.account_circle,
+                                    size: 50,
+                                  ))
+                          : const CircleAvatar(
+                              backgroundColor: Color(0xFFF96060),
+                              foregroundColor: Colors.white,
+                              radius: 25,
+                              child: Icon(
+                                Icons.account_circle,
+                                size: 50,
+                              )),
                       Positioned(
                         bottom: 0,
                         right: 0,

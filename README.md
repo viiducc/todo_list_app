@@ -1,4 +1,9 @@
 
+<p align="center">
+  <a href="https://raw.githubusercontent.com/viiducc/todo_list_app/main/assets/images/splash/splash.png">
+    <img src="https://raw.githubusercontent.com/viiducc/todo_list_app/main/assets/images/splash/splash.svg" alt="">
+  </a>
+</p>
 <h1 align="center">Aking - Todo list app</h1>
 
 <p align="center">An  app that help you organize work and life.</p>
@@ -42,5 +47,10 @@ Go to [FireBase Console](https://console.firebase.google.com/) and create a new 
 | [Pull to Refresh ](https://pub.dev/packages/pull_to_refresh) | a widget provided to the flutter scroll component drop-down refresh and pull up load.
 
 # Image
+
+# Contact
+### Vi Duc 
+- Gmail: viduct2000@gmail.com
+- Facebook: facebook.com/viiducc
 
 
