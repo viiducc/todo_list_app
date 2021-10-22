@@ -54,7 +54,8 @@ class _ProjectState extends State<Project> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.symmetric(vertical: 40, horizontal: 16),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
                 child: GridView.builder(
                     physics: ScrollPhysics(),
                     scrollDirection: Axis.vertical,
