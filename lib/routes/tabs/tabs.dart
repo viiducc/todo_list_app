@@ -158,8 +158,10 @@ class _TabsState extends State<Tabs> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => NewTask()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NewTask()));
                     },
                     child: const Text(
                       "Add Task",

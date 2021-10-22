@@ -39,7 +39,7 @@ flutter:
     - assets/images/successful/
     - assets/images/profile/
     - assets/images/taskview/
-    # - assets/images/
+    - assets/images/
     - assets/icons/taskview/
     - assets/icons/tabs/
 

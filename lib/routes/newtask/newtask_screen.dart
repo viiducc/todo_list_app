@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/routes/newtask/widget/due_date.dart';
@@ -15,13 +16,12 @@ class _NewTaskState extends State<NewTask> {
   final User? user = FirebaseAuth.instance.currentUser;
   String link = '';
   String _projectValue = '', _projectId = '';
-  // ignore: avoid_init_to_null
   DateTime? _myDate = null;
-  // ignore: avoid_init_to_null
   TimeOfDay? _myTime = null;
   List<String> member = [];
   TextEditingController _titleController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -94,7 +94,7 @@ class _NewTaskState extends State<NewTask> {
                               color: Color(0xFFF4F4F4),
                             ),
                             child: Text(
-                              user!.displayName.toString().substring(0, 8),
+                              user!.displayName.toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -121,15 +121,27 @@ class _NewTaskState extends State<NewTask> {
                               ),
                               color: Color(0xFFF4F4F4),
                             ),
-                            child: const Text(
-                              'Project',
-                              style: TextStyle(
-                                color: Color(0xFF313131),
-                                fontFamily: 'AvenirNextRoundedPro',
-                                fontSize: 14,
-                              ),
+                            // child: const Text(
+                            //   'Project',
+                            //   style: TextStyle(
+                            //     color: Color(0xFF313131),
+                            //     fontFamily: 'AvenirNextRoundedPro',
+                            //     fontSize: 14,
+                            //   ),
+                            // ),
+                            child: InkWell(
+                              onTap: () {
+                                openProjectDialog(user!, setProjectValue);
+                              },
+                              child: Center(
+                                  child: Text(
+                                _projectValue == '' ? 'Project' : _projectValue,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                             ),
-                          ),
+                          )
                         ],
                       ),
                       const SizedBox(
@@ -279,6 +291,56 @@ class _NewTaskState extends State<NewTask> {
     );
   }
 
+  Future<void> openProjectDialog(User user, Function press) async =>
+      await showDialog(
+        barrierColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext context) {
+          return StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('users')
+                .doc(user.uid)
+                .collection('project')
+                .snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData) {
+                List<QueryDocumentSnapshot<Object?>> data = snapshot.data!.docs;
+                return SimpleDialog(
+                  backgroundColor: Color(0xFFF4F4F4),
+                  contentPadding: EdgeInsets.all(0),
+                  children: [
+                    for (int i = 0; i < data.length; i++)
+                      SimpleDialogOption(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            data[i]['title'].toString(),
+                            style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          press(data[i]['title'].toString(),
+                              data[i]['id'].toString());
+                          Navigator.pop(context);
+                        },
+                      ),
+                  ],
+                );
+              }
+              return Container(
+                color: Colors.white,
+                child: Center(
+                  child: Image.asset("assets/images/splash/splash.svg"),
+                ),
+              );
+            },
+          );
+        },
+      );
   void setDate(date) {
     setState(() {
       _myDate = date;
@@ -288,6 +350,13 @@ class _NewTaskState extends State<NewTask> {
   void setTime(time) {
     setState(() {
       _myTime = time;
+    });
+  }
+
+  void setProjectValue(String title, String id) {
+    setState(() {
+      _projectValue = title;
+      _projectId = id;
     });
   }
 }

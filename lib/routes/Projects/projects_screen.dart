@@ -23,7 +23,10 @@ class _ProjectState extends State<Project> {
   }
 
   List<ProjectModel> items = getProjectList();
-
+  // List<ProjectModel> items = [
+  //   ProjectModel('aaa', 0xFF6074F9, 0),
+  //   ProjectModel('bba', 0xFF6074F9, 0)
+  // ];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,32 +47,43 @@ class _ProjectState extends State<Project> {
         ),
         centerTitle: true,
       ),
-      body: RefreshIndicator(
-        onRefresh: getProjectData,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: RefreshIndicator(
+          onRefresh: getProjectData,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 margin: EdgeInsets.symmetric(vertical: 40, horizontal: 16),
                 child: GridView.builder(
+                    physics: ScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     itemCount: items.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            crossAxisSpacing: 4.0,
-                            mainAxisSpacing: 4.0),
+                            crossAxisSpacing: 16.0,
+                            mainAxisSpacing: 16.0),
                     itemBuilder: (context, index) {
                       final item = items[index];
-
                       return Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 26, horizontal: 26),
+                        // decoration: BoxDecoration(
+                        //   color: Color(0xFFFFFFFF),
+                        //   borderRadius: BorderRadiusDirectional.circular(5),
+                        // ),
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
-                          borderRadius: BorderRadiusDirectional.circular(5),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xFFE0E0E0), spreadRadius: 2,
+                              blurRadius: 7,
+                              offset: Offset(5, 5), // Shadow position
+                            ),
+                          ],
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +109,7 @@ class _ProjectState extends State<Project> {
                               ),
                             ),
                             const SizedBox(
-                              height: 46,
+                              height: 40,
                             ),
                             Text(
                               item.title,
@@ -106,6 +120,7 @@ class _ProjectState extends State<Project> {
                                 fontSize: 18,
                               ),
                             ),
+                            Text(item.id.toString()),
                             const SizedBox(
                               height: 16,
                             ),
@@ -237,13 +252,25 @@ class _ProjectState extends State<Project> {
   }
 
   Future<void> addProject() async {
+    int size = 0;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("project")
+        .get()
+        .then((snap) {
+      size = snap.docs.length; // will return the collection size
+    });
     FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection("project")
-        .add({
+        .doc('${size + 1}')
+        .set({
           'title': titleController.text.trim(),
           'color': _chosenColor,
+          'task': 0,
+          'id': '${size + 1}'
         })
         .then((value) => print("Project Added"))
         .catchError((error) => print("Failed to add Project: $error"));

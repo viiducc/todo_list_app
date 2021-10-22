@@ -12,8 +12,10 @@ List<ProjectModel> getProjectList() {
       .then((QuerySnapshot querySnapshot) {
     projectList = [];
     querySnapshot.docs.forEach((doc) {
-      projectList.add(ProjectModel(doc["title"], doc["color"], doc["task"]));
+      projectList.add(
+          ProjectModel(doc["title"], doc["color"], doc["task"], doc["id"]));
     });
   });
+
   return projectList;
 }
