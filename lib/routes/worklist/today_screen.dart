@@ -50,31 +50,26 @@ class _TodayState extends State<Today> {
                     itemBuilder: (BuildContext context, int index) {
                       final item = items[index];
                       return Slidable(
-                        child: buildListTile(item),
-                        actionPane: const SlidableDrawerActionPane(),
-                        actionExtentRatio: 0.2,
-                        secondaryActions: [
-                          IconSlideAction(
-                              iconWidget: const Icon(
-                                Icons.edit,
-                                color: Color(0xFFF96060),
+                          child: buildListTile(item),
+                          //startActionPane:  SlidableDrawerActionPane(),
+                          endActionPane: ActionPane(
+                            motion: ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                  icon: Icons.edit,
+                                  onPressed: (_) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return ViewTask();
+                                        });
+                                  }),
+                              SlidableAction(
+                                icon: Icons.delete,
+                                onPressed: (_) {},
                               ),
-                              onTap: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return ViewTask();
-                                    });
-                              }),
-                          IconSlideAction(
-                            iconWidget: const Icon(
-                              Icons.delete,
-                              color: Color(0xFFF96060),
-                            ),
-                            onTap: () {},
-                          ),
-                        ],
-                      );
+                            ],
+                          ));
                     },
                   ),
                 )

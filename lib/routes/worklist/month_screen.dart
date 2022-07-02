@@ -94,26 +94,19 @@ class _MonthState extends State<Month> {
                     itemBuilder: (BuildContext context, int index) {
                       final item = items[index];
                       return Slidable(
-                        child: buildListTile(item),
-                        actionPane: const SlidableDrawerActionPane(),
-                        actionExtentRatio: 0.2,
-                        secondaryActions: [
-                          IconSlideAction(
-                            iconWidget: const Icon(
-                              Icons.edit,
-                              color: Color(0xFFF96060),
-                            ),
-                            onTap: () {},
-                          ),
-                          IconSlideAction(
-                            iconWidget: const Icon(
-                              Icons.delete,
-                              color: Color(0xFFF96060),
-                            ),
-                            onTap: () {},
-                          ),
-                        ],
-                      );
+                          child: buildListTile(item),
+                          //startActionPane:  SlidableDrawerActionPane(),
+                          endActionPane: ActionPane(
+                            motion: ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                  icon: Icons.edit, onPressed: (_) {}),
+                              SlidableAction(
+                                icon: Icons.delete,
+                                onPressed: (_) {},
+                              ),
+                            ],
+                          ));
                     },
                   ),
                 )
