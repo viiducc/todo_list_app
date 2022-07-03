@@ -38,238 +38,246 @@ class _ProfileState extends State<Profile> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          InfoUser(),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              margin: const EdgeInsets.only(left: 20, top: 24),
-              child: Row(
-                children: [
-                  Container(
-                    height: 100,
-                    width: 160,
-                    decoration: BoxDecoration(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            InfoUser(),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Container(
+                margin: const EdgeInsets.only(left: 20, top: 24),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 160,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: const Color(0xFFF96060)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Event',
+                              style: TextStyle(
+                                  height: 2,
+                                  color: Color(0xFFFFFFFF),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            Text(
+                              '12 Tasks',
+                              style: TextStyle(
+                                  height: 2,
+                                  color: Color(0xFFFFFFFF),
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 100,
+                      width: 160,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: const Color(0xFFF96060)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Event',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFFFFFFFF),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          Text(
-                            '12 Tasks',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 14),
-                          ),
-                        ],
+                        color: const Color(0xFF6074F9),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'To do Task',
+                              style: TextStyle(
+                                  height: 2,
+                                  color: Color(0xFFFFFFFF),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            Text(
+                              '12 Tasks',
+                              style: TextStyle(
+                                  height: 2,
+                                  color: Color(0xFFFFFFFF),
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    height: 100,
-                    width: 160,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: const Color(0xFF6074F9),
+                    const SizedBox(
+                      width: 10,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'To do Task',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFFFFFFFF),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          Text(
-                            '12 Tasks',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 14),
-                          ),
-                        ],
+                    Container(
+                      height: 100,
+                      width: 160,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: const Color(0xFF8560F9)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Quick Notes',
+                              style: TextStyle(
+                                  height: 2,
+                                  color: Color(0xFFFFFFFF),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            Text(
+                              '12 Tasks',
+                              style: TextStyle(
+                                  height: 2,
+                                  color: Color(0xFFFFFFFF),
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    height: 100,
-                    width: 160,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: const Color(0xFF8560F9)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Quick Notes',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFFFFFFFF),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          Text(
-                            '12 Tasks',
-                            style: TextStyle(
-                                height: 2,
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Statistic",
-                    style: TextStyle(
-                        color: Color(0xFF313131),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Row(
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+
+              child: Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        children: [
-                          CircularPercentIndicator(
-                            radius: 90.0,
-                            lineWidth: 2,
-                            animation: true,
-                            animationDuration: 1200,
-                            //backgroundColor: Color(0xFFF96060),
-                            percent: 0.6,
-                            center: const Text(
-                              '60%',
-                              style: TextStyle(
-                                  height: 2,
-                                  color: Color(0xFF313131),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            ),
-                            progressColor: Color(0xFFF96060),
-                          ),
-                          SizedBox(
-                            height: 14,
-                          ),
-                          const Text(
-                            'Events',
-                            style: TextStyle(
-                                color: Color(0xFF313131),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ],
+                      const Text(
+                        "Statistic",
+                        style: TextStyle(
+                            color: Color(0xFF313131),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       ),
                       const SizedBox(
-                        width: 28,
+                        height: 24,
                       ),
-                      Column(
+                      Row(
                         children: [
-                          CircularPercentIndicator(
-                            radius: 90.0,
-                            lineWidth: 2,
-                            animation: true,
-                            animationDuration: 1200,
-                            //backgroundColor: Color(0xFFF96060),
-                            percent: 0.4,
-                            center: const Text(
-                              '40%',
-                              style: TextStyle(
-                                  height: 2,
-                                  color: Color(0xFF313131),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            ),
-                            progressColor: Color(0xFFF6074F9),
+                          Column(
+                            children: [
+                              CircularPercentIndicator(
+                                radius: 45.0,
+                                lineWidth: 2,
+                                animation: true,
+                                animationDuration: 1200,
+                                //backgroundColor: Color(0xFFF96060),
+                                percent: 0.6,
+                                center: const Text(
+                                  '60%',
+                                  style: TextStyle(
+                                      height: 2,
+                                      color: Color(0xFF313131),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                progressColor: Color(0xFFF96060),
+                              ),
+                              SizedBox(
+                                height: 14,
+                              ),
+                              const Text(
+                                'Events',
+                                style: TextStyle(
+                                    color: Color(0xFF313131),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 14,
+                          const SizedBox(
+                            width: 28,
                           ),
-                          const Text(
-                            'To do',
-                            style: TextStyle(
-                                color: Color(0xFF313131),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
+                          Column(
+                            children: [
+                              CircularPercentIndicator(
+                                radius: 45.0,
+                                lineWidth: 2,
+                                animation: true,
+                                animationDuration: 1200,
+                                //backgroundColor: Color(0xFFF96060),
+                                percent: 0.4,
+                                center: const Text(
+                                  '40%',
+                                  style: TextStyle(
+                                      height: 2,
+                                      color: Color(0xFF313131),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                progressColor: Color(0xFFF6074F9),
+                              ),
+                              SizedBox(
+                                height: 14,
+                              ),
+                              const Text(
+                                'To do',
+                                style: TextStyle(
+                                    color: Color(0xFF313131),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 28,
-                      ),
-                      Column(
-                        children: [
-                          CircularPercentIndicator(
-                            radius: 90.0,
-                            lineWidth: 2,
-                            animation: true,
-                            animationDuration: 1200,
-                            //backgroundColor: Color(0xFFF96060),
-                            percent: 0.8,
-                            center: const Text(
-                              '80%',
-                              style: TextStyle(
-                                  height: 2,
-                                  color: Color(0xFF313131),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            ),
-                            progressColor: Color(0xFF8560F9),
+                          const SizedBox(
+                            width: 28,
                           ),
-                          SizedBox(
-                            height: 14,
-                          ),
-                          const Text(
-                            'Quick Notes',
-                            style: TextStyle(
-                                color: Color(0xFF313131),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
+                          Column(
+                            children: [
+                              CircularPercentIndicator(
+                                radius: 45.0,
+                                lineWidth: 2,
+                                animation: true,
+                                animationDuration: 1200,
+                                //backgroundColor: Color(0xFFF96060),
+                                percent: 0.8,
+                                center: const Text(
+                                  '80%',
+                                  style: TextStyle(
+                                      height: 2,
+                                      color: Color(0xFF313131),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                progressColor: Color(0xFF8560F9),
+                              ),
+                              SizedBox(
+                                height: 14,
+                              ),
+                              const Text(
+                                'Quick Notes',
+                                style: TextStyle(
+                                    color: Color(0xFF313131),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ],
-                  ),
-                ],
-              ))
-        ],
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }

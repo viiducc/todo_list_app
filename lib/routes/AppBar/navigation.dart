@@ -17,12 +17,7 @@ class NavigationHeader extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.west),
-            onPressed: () {
-              print(FirebaseAuth.instance.currentUser);
-            },
-          ),
+          automaticallyImplyLeading: false,
           title: const Text(
             'Work List',
           ),
