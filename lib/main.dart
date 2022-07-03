@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/data/note_list.dart';
 import 'package:todo_list_app/routes/walkthrough/splash_screen.dart';
 
 void main() async {

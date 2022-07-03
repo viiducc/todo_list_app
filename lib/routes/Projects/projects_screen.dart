@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/data/note_list.dart';
 import 'package:todo_list_app/data/project_list.dart';
 import 'package:todo_list_app/models/project.dart';
 

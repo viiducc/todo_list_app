@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/data/note_list.dart';
 import 'package:todo_list_app/models/check_list_model.dart';
 import 'package:todo_list_app/models/note_model.dart';
 import 'package:todo_list_app/models/quick_note.dart';
+
+import '../../data/quick_note_list.dart';
 
 class Quick extends StatefulWidget {
   const Quick({Key? key}) : super(key: key);
@@ -18,10 +19,10 @@ class _QuickState extends State<Quick> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFDFDFD),
+      backgroundColor: const Color(0xFFFDFDFD),
       appBar: AppBar(
-        shadowColor: Color(0xFFFFFFFF),
-        backgroundColor: Color(0xFFFFFFFF),
+        shadowColor: const Color(0xFFFFFFFF),
+        backgroundColor: const Color(0xFFFFFFFF),
         automaticallyImplyLeading: false,
         title: const Text(
           'Quick Notes',
@@ -37,7 +38,7 @@ class _QuickState extends State<Quick> {
       body: RefreshIndicator(
         onRefresh: getQuickNoteData,
         child: Container(
-          margin: EdgeInsets.only(left: 32, right: 19, top: 43),
+          margin: const EdgeInsets.only(left: 32, right: 19, top: 43),
           //padding: EdgeInsets.only(left: 32, right: 19),
           child: ListView.builder(
             scrollDirection: Axis.vertical,
@@ -66,16 +67,16 @@ class _QuickState extends State<Quick> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(left: 32),
+                            margin: const EdgeInsets.only(left: 32),
                             width: 121,
                             height: 3,
                             color: Color(item.color),
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 32, right: 19),
+                            margin: const EdgeInsets.only(left: 32, right: 19),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3)),
-                            padding: EdgeInsets.symmetric(vertical: 21),
+                            padding: const EdgeInsets.symmetric(vertical: 21),
                             child: Text(
                               item.description,
                               style: const TextStyle(
@@ -116,16 +117,16 @@ class _QuickState extends State<Quick> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(left: 32),
+                            margin: const EdgeInsets.only(left: 32),
                             width: 121,
                             height: 3,
                             color: Color(item.color),
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 32, right: 19),
+                            margin: const EdgeInsets.only(left: 32, right: 19),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3)),
-                            padding: EdgeInsets.symmetric(vertical: 21),
+                            padding: const EdgeInsets.symmetric(vertical: 21),
                             child: Text(
                               item.title,
                               style: const TextStyle(
@@ -158,7 +159,7 @@ class _QuickState extends State<Quick> {
   }
 
   Future<void> getQuickNoteData() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     setState(() {
       items = getQuickNoteList();
     });
